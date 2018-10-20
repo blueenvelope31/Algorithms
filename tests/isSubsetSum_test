@@ -1,0 +1,16 @@
+import unittest
+from dp.is_subset_sum import isSubsetSum, isSubsetSumRecursive
+
+
+class test_issubsetsum(unittest.TestCase):
+    def test_isSubsetSum(self):
+        self.assertTrue(isSubsetSum([2, 4, 15, 11, 8], 34))
+        self.assertFalse(isSubsetSum([2, 4, 15, 11, 8], 35))
+
+    def test_isSubsetSumRecursive(self):
+        self.assertTrue(isSubsetSumRecursive([2, 4, 15, 11, 8], 34))
+        self.assertFalse(isSubsetSumRecursive([2, 4, 15, 11, 8], 35))
+
+
+if __name__ == "__main__":
+    unittest.main()
