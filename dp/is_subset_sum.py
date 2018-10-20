@@ -1,9 +1,24 @@
-def isSubsetSumDP(s, total):
+"""
+Problem: https://en.wikipedia.org/wiki/Subset_sum_problem
+
+Given a set of integers, is there a non-empty subset whose sum is zero?
+
+>>> isSubsetSum([2, 4, 15, 11, 8], 34)
+True
+>>> isSubsetSum([2, 4, 15, 11, 8], 35)
+False
+>>> isSubsetSumRecursive([2, 4, 15, 11, 8], 34)
+True
+>>> isSubsetSumRecursive([2, 4, 15, 11, 8], 35)
+False
+"""
+
+def isSubsetSum(s, total):
     """Returns true if there is a subset of s with sum total else false""" 
-    return isSubsetSumDPHelper(s, len(s), total)
+    return isSubsetSumHelper(s, len(s), total)
 
 
-def isSubsetSumDPHelper(s, n, total):
+def isSubsetSumHelper(s, n, total):
     """Helper function for dynamic programming implementation""" 
 
     # The value of subset[i][j] will be true if there is a 
@@ -29,10 +44,10 @@ def isSubsetSumDPHelper(s, n, total):
 
 def isSubsetSumRecursive(s, total):
     """Returns true if there is a subset of s with sum total else false"""
-    return isSubsetSumHelper(s, len(s), total)
+    return isSubsetSumRecursiveHelper(s, len(s), total)
 
 
-def isSubsetSumHelper(s, n, total): 
+def isSubsetSumRecursiveHelper(s, n, total): 
     """Helper function for recursive implentation"""
     # Base Cases
     if (total == 0) : 
@@ -42,9 +57,9 @@ def isSubsetSumHelper(s, n, total):
    
     # If last element is greater than total, then ignore it 
     if (s[n - 1] > total) : 
-        return isSubsetSumHelper(s, n - 1, total); 
+        return isSubsetSumRecursiveHelper(s, n - 1, total); 
    
     # else, check if total can be obtained by any of the following 
     # (a) including the last element 
     # (b) excluding the last element    
-    return isSubsetSumHelper(s, n-1, total) or isSubsetSumHelper(s, n-1, total-s[n-1])
+    return isSubsetSumRecursiveHelper(s, n-1, total) or isSubsetSumRecursiveHelper(s, n-1, total-s[n-1])
